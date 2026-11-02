@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.angular/
+*.tgz
+/projects/lumina-charts/docs/
+
+# Local credentials and temporary files
+.env
+.env.*
+!.env.example
+.npmrc
+*.log
+.DS_Store
+Thumbs.db

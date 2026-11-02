@@ -1,0 +1,9 @@
+{
+  "name": "lumina-charts",
+  "version": "0.2.0",
+  "description": "Gráficas para Angular: una API sencilla, temas cuidados y el poder de ECharts.",
+  "license": "MIT",
+  "peerDependencies": {"@angular/common": "^21.0.0", "@angular/core": "^21.0.0", "echarts": "^6.0.0"},
+  "dependencies": {"tslib": "^2.8.1"},
+  "sideEffects": false
+}

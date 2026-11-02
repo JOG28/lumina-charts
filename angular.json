@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "projects": {
+    "lumina-charts": {
+      "projectType": "library",
+      "root": "projects/lumina-charts",
+      "sourceRoot": "projects/lumina-charts/src",
+      "architect": {"build": {"builder": "@angular/build:ng-packagr", "options": {"project": "projects/lumina-charts/ng-package.json", "tsConfig": "projects/lumina-charts/tsconfig.lib.json"}}}
+    },
+    "gallery": {
+      "projectType": "application",
+      "root": "projects/gallery",
+      "sourceRoot": "projects/gallery/src",
+      "architect": {
+        "build": {"builder": "@angular/build:application", "options": {"browser": "projects/gallery/src/main.ts", "index": "projects/gallery/src/index.html", "tsConfig": "projects/gallery/tsconfig.app.json", "styles": ["projects/gallery/src/styles.css", "projects/gallery/src/capabilities.css"], "outputPath": "dist/gallery"}},
+        "serve": {"builder": "@angular/build:dev-server", "options": {"buildTarget": "gallery:build"}}
+      }
+    },
+    "mobile-demo": {
+      "projectType": "application", "root": "projects/mobile-demo", "sourceRoot": "projects/mobile-demo/src",
+      "architect": {
+        "build": {"builder": "@angular/build:application", "options": {"browser": "projects/mobile-demo/src/main.ts", "index": "projects/mobile-demo/src/index.html", "tsConfig": "projects/mobile-demo/tsconfig.app.json", "styles": ["projects/mobile-demo/src/styles.css"], "outputPath": "dist/mobile-demo"}},
+        "serve": {"builder": "@angular/build:dev-server", "options": {"buildTarget": "mobile-demo:build"}}
+      }
+    }
+  }
+}

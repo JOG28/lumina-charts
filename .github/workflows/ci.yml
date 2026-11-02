@@ -1,0 +1,41 @@
+name: Validate library
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Run tests and SVG rendering checks
+        run: npm test
+      - name: Build library, gallery and Ionic example
+        run: npm run build
+      - name: Prepare installable package without publishing
+        run: npm pack ./dist/lumina-charts --pack-destination .
+      - name: Keep package for manual testing
+        uses: actions/upload-artifact@v7
+        with:
+          name: lumina-charts-test-package
+          path: lumina-charts-*.tgz
+          if-no-files-found: error
+          retention-days: 7
